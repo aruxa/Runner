@@ -9,6 +9,7 @@ using Microsoft.Phone.Controls.Maps.Platform;
 using runner.Auxiliar;
 using runner.Bing.Route;
 using runner.Geo;
+using runner.Geo.Mock;
 
 namespace runner
 {
@@ -131,13 +132,13 @@ namespace runner
 
         public ICommand EndTrackingCommand { get; private set; }
 
-        public IGeoCoordinateWatcher Watcher { get; private set; }
+        public FakeGeoCoordinateWatcher Watcher { get; private set; }
 
         public GeoCoordinate YouAreHere
         {
             get
             {
-                if (Watcher.Position.Location.IsUnknown)
+                if (Watcher == null || Watcher.Position == null || Watcher.Position.Location == null || Watcher.Position.Location.IsUnknown)
                 {
                     return defaultLocation;
                 }
@@ -183,13 +184,13 @@ namespace runner
 
         public MapViewModel()
         {
-            Watcher = new GeoCoordinateWatcherAdapter(GeoPositionAccuracy.High);
+            Watcher = new FakeGeoCoordinateWatcher(GeoPositionAccuracy.High);
 
             if (Watcher.Permission == GeoPositionPermission.Granted)
             {
                 Watcher.MovementThreshold = SettingsHelper.Instance.MovementThreshhold;
             }
-            Watcher.Position.Location.HorizontalAccuracy = 1;
+            //Watcher.Position.Location.HorizontalAccuracy = 1;
             Watcher.PositionChanged += WatcherOnPositionChanged;
             Watcher.Start();
 
@@ -218,7 +219,7 @@ namespace runner
             if (eventArgs.Position == null || eventArgs.Position.Location == null || eventArgs.Position.Location.IsUnknown)
             {
                 return;
-            }
+              }
             var currentLoc = eventArgs.Position.Location;
             Deployment.Current.Dispatcher.BeginInvoke(() => UpdateMapElements(currentLoc));
         }
@@ -263,6 +264,14 @@ namespace runner
             Distance = 0;
             Route = new RouteModel(new ObservableCollection<GeoCoordinate>());
             IsRecording = true;
+            
+            Watcher.ChangePosition(DateTime.Now, new GeoCoordinate(44.448074, 26.081837));
+            Watcher.ChangePosition(DateTime.Now, new GeoCoordinate(44.447959, 26.082315));
+            Watcher.ChangePosition(DateTime.Now, new GeoCoordinate(44.447924, 26.082518));
+            Watcher.ChangePosition(DateTime.Now, new GeoCoordinate(44.448231, 26.082679));
+            Watcher.ChangePosition(DateTime.Now, new GeoCoordinate(44.450681, 26.084096));
+            Watcher.ChangePosition(DateTime.Now, new GeoCoordinate(44.451187, 26.084364));
+  
         }
 
         private void StopWatcher(object obj)
