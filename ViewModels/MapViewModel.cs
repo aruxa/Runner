@@ -8,6 +8,7 @@ using Microsoft.Phone.Controls.Maps;
 using Microsoft.Phone.Controls.Maps.Platform;
 using runner.Auxiliar;
 using runner.Bing.Route;
+using runner.Geo;
 
 namespace runner
 {
@@ -130,7 +131,7 @@ namespace runner
 
         public ICommand EndTrackingCommand { get; private set; }
 
-        public GeoCoordinateWatcher Watcher { get; private set; }
+        public IGeoCoordinateWatcher Watcher { get; private set; }
 
         public GeoCoordinate YouAreHere
         {
@@ -182,7 +183,7 @@ namespace runner
 
         public MapViewModel()
         {
-            Watcher = new GeoCoordinateWatcher(GeoPositionAccuracy.High);
+            Watcher = new GeoCoordinateWatcherAdapter(GeoPositionAccuracy.High);
 
             if (Watcher.Permission == GeoPositionPermission.Granted)
             {

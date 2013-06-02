@@ -76,6 +76,8 @@
     <Compile Include="Controls\Settings.xaml.cs">
       <DependentUpon>Settings.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Geo\GeoCoordinateWatcherAdapter.cs" />
+    <Compile Include="Geo\IGeoCoordinateWatcher.cs" />
     <Compile Include="Geo\Mock\FakeGeoCoordinateWatcher.cs" />
     <Compile Include="Geo\RouteCalculationError.cs" />
     <Compile Include="Geo\RouteCalculator.cs" />
