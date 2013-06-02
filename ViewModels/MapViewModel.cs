@@ -126,8 +126,6 @@ namespace runner
             get { return _itineraries; }
         }
 
-        public ICommand FindRouteCommand { get; private set; }
-
         public ICommand StartTrackingCommand { get; private set; }
 
         public ICommand EndTrackingCommand { get; private set; }
@@ -182,50 +180,6 @@ namespace runner
             }
         }
 
-        void CalculateRoute(object o)
-        {
-            try
-            {
-                var routeCalculator = new RouteCalculator(
-                    CredentialsProvider,
-                    To,
-                    From,
-                    Deployment.Current.Dispatcher,
-                    result =>
-                    {
-                        // Clear the route collection to have only one route at a time.
-                        //Routes.Clear();
-
-                        //// Create a new route based on route calculator result, and add the new route to the route collection.
-                        //var routeModel = new RouteModel(result.Result.RoutePath.Points);
-                        //Routes.Add(routeModel);
-                        //Route = routeModel;
-
-                        //// Add new route itineraries to the itineraries collection.
-                        //foreach (var itineraryItem in result.Result.Legs[0].Itinerary)
-                        //{
-                        //    Itineraries.Add(itineraryItem);
-                        //}
-                        NotifyPropertyChanged("Routes");
-                    });
-
-                routeCalculator.Error += r => MessageBox.Show(r.Reason);
-
-                // Start the route calculation asynchronously.
-                routeCalculator.CalculateAsync();
-            }
-            catch
-            {
-
-            }
-        }
-
-
-        private void WatcherOnStatusChanged(object sender, GeoPositionStatusChangedEventArgs geoPositionStatusChangedEventArgs)
-        {
-
-        }
-
         public MapViewModel()
         {
             Watcher = new GeoCoordinateWatcher(GeoPositionAccuracy.High);
@@ -236,7 +190,6 @@ namespace runner
             }
             Watcher.Position.Location.HorizontalAccuracy = 1;
             Watcher.PositionChanged += WatcherOnPositionChanged;
-            Watcher.StatusChanged += WatcherOnStatusChanged;
             Watcher.Start();
 
             InitializeMapViewModelProperties();
@@ -246,7 +199,6 @@ namespace runner
 
         void InitializeMapViewModelProperties()
         {
-            FindRouteCommand = new Command(CalculateRoute);
             StartTrackingCommand = new Command(StartWatcher, canExecute => IsRecording == false);
             EndTrackingCommand = new Command(StopWatcher, canExecute => IsRecording);
 
