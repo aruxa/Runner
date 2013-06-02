@@ -88,7 +88,7 @@ namespace runner
         private void RootFrame_NavigationFailed(object sender, NavigationFailedEventArgs e)
         {
             if (System.Diagnostics.Debugger.IsAttached)
-            {
+            {   
                 // A navigation has failed; break into the debugger
                 System.Diagnostics.Debugger.Break();
             }

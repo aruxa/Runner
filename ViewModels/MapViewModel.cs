@@ -232,8 +232,7 @@ namespace runner
 
             if (Watcher.Permission == GeoPositionPermission.Granted)
             {
-
-                Watcher.MovementThreshold = double.IsNaN(SettingsHelper.Instance.MovementThreshhold) || (SettingsHelper.Instance.MovementThreshhold == 0) ? 1 : SettingsHelper.Instance.MovementThreshhold;
+                Watcher.MovementThreshold = SettingsHelper.Instance.MovementThreshhold;
             }
             Watcher.Position.Location.HorizontalAccuracy = 1;
             Watcher.PositionChanged += WatcherOnPositionChanged;

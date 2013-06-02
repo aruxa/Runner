@@ -8,18 +8,38 @@
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
     xmlns:runner="clr-namespace:runner"
+     xmlns:controls ="clr-namespace:runner.Controls"
+    xmlns:auxiliar="clr-namespace:runner.Auxiliar"
     d:DesignHeight="480" d:DesignWidth="480">
-    
+
+    <UserControl.Resources>
+        <auxiliar:DoubleToStringConverter x:Key="DoubleToStringConverter"/>
+    </UserControl.Resources>
     <UserControl.DataContext>
         <runner:SettingsViewModel/>
     </UserControl.DataContext>
-    <Grid x:Name="LayoutRoot">
-        <StackPanel Orientation="Horizontal" Margin="0,0,0,17">
-            <TextBlock Text="LineOne" TextWrapping="NoWrap" Margin="12,0,0,0" />
-            <TextBox Text="{Binding Settings, Path=MovementThreshold}"/>
-        </StackPanel>
-        <StackPanel>
-            <TextBlock Text="LineThree" TextWrapping="NoWrap" Margin="12,-6,0,0"/>
-        </StackPanel>
+    <Grid x:Name="LayoutRoot" ShowGridLines="false">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+        <TextBlock Text="Movement Threshold" TextWrapping="NoWrap" Margin="10,20,10,0" />
+        <TextBox InputScope="Number" Grid.Column="1" 
+                         Text="{Binding MovementThreshold, Mode=TwoWay, Converter={StaticResource DoubleToStringConverter}}" 
+                         BorderBrush="{StaticResource PhoneTextBoxEditBorderBrush}"
+                         Background="{StaticResource PhoneTextBoxEditBackgroundBrush}"
+                         Foreground="{StaticResource PhoneTextBoxForegroundBrush}"
+                         SelectionForeground="{StaticResource PhoneTextBoxSelectionForegroundBrush}" />
+        <TextBlock Grid.Row="1" Text="misc" TextWrapping="NoWrap" Margin="10,20,10,0"/>
+        <TextBox InputScope="Number" Grid.Column="1" Grid.Row="1" Text="{Binding MovementThreshold}"
+                         BorderBrush="{StaticResource PhoneTextBoxEditBorderBrush}"
+                         Background="{StaticResource PhoneTextBoxEditBackgroundBrush}"
+                         Foreground="{StaticResource PhoneTextBoxForegroundBrush}"
+                         SelectionForeground="{StaticResource PhoneTextBoxSelectionForegroundBrush}"/>
     </Grid>
 </UserControl>
