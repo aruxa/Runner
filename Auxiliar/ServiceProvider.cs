@@ -1,4 +1,4 @@
-﻿namespace runner
+﻿namespace runner.Auxiliar
 {
     public sealed class Provider
     {

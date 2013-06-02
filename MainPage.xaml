@@ -14,11 +14,11 @@
     SupportedOrientations="Portrait" Orientation="Portrait"
     shell:SystemTray.IsVisible="True" 
     xmlns:runner="clr-namespace:runner"
-    xmlns:runnerControls="clr-namespace:runner.Controls">
+    xmlns:runnerControls="clr-namespace:runner.Controls" xmlns:Auxiliar="clr-namespace:runner.Auxiliar">
 
     <!--LayoutRoot is the root grid where all page content is placed-->
     <phone:PhoneApplicationPage.Resources>
-        <runner:BoolToOppositeConverter x:Key="BoolToOppositeConverter" />
+        <Auxiliar:BoolToOppositeConverter x:Key="BoolToOppositeConverter" />
     </phone:PhoneApplicationPage.Resources>
     <!--LayoutRoot is the root grid where all page content is placed-->
     <Grid x:Name="LayoutRoot" Background="Transparent">
@@ -33,13 +33,13 @@
                     </Grid.RowDefinitions>
                     <!--ContentPanel - place additional content here-->
                     <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
-                        <runner:MapControl x:Name="mapControl"/>
+                        <runnerControls:MapControl x:Name="mapControl"/>
                     </Grid>
 
-                    <runner:BindableApplicationBar x:Name="AppBar" BarOpacity="1.0"  >
-                        <runner:BindableApplicationBarIconButton Command="{Binding ElementName=mapControl, Path = DataContext.StartTrackingCommand}" IsEnabled="{Binding ElementName=mapControl, Path = DataContext.IsRecording, Converter={StaticResource BoolToOppositeConverter}}" IconUri="Images\appbar.transport.play.rest.png" Text="Start" />
-                        <runner:BindableApplicationBarIconButton Command="{Binding ElementName=mapControl, Path = DataContext.EndTrackingCommand}" IsEnabled="{Binding ElementName=mapControl, Path = DataContext.IsRecording}"  IconUri="Images\appbar.transport.pause.rest.png" Text="Stop" />
-                    </runner:BindableApplicationBar>
+                    <runnerControls:BindableApplicationBar x:Name="AppBar" BarOpacity="1.0"  >
+                        <runnerControls:BindableApplicationBarIconButton Command="{Binding ElementName=mapControl, Path = DataContext.StartTrackingCommand}" IsEnabled="{Binding ElementName=mapControl, Path = DataContext.IsRecording, Converter={StaticResource BoolToOppositeConverter}}" IconUri="Images\appbar.transport.play.rest.png" Text="Start" />
+                        <runnerControls:BindableApplicationBarIconButton Command="{Binding ElementName=mapControl, Path = DataContext.EndTrackingCommand}" IsEnabled="{Binding ElementName=mapControl, Path = DataContext.IsRecording}"  IconUri="Images\appbar.transport.pause.rest.png" Text="Stop" />
+                    </runnerControls:BindableApplicationBar>
                 </Grid>
             </controls:PivotItem>
 

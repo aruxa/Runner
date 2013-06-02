@@ -7,7 +7,7 @@ using System.Text;
 using System.Windows;
 using System.Windows.Media;
 
-namespace runner
+namespace runner.Auxiliar
 {
     public static class VisualTreeHelperExtensions
     {

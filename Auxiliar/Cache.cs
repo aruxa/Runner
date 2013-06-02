@@ -5,7 +5,7 @@ using System.IO.IsolatedStorage;
 using System.Linq;
 using System.Runtime.Serialization;
 
-namespace runner
+namespace runner.Auxiliar
 {
     /// <summary>
     /// 

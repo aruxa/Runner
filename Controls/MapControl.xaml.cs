@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Device.Location;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using Microsoft.Phone.Controls.Maps;
 
-namespace runner
+namespace runner.Controls
 {
     public partial class MapControl : UserControl
     {

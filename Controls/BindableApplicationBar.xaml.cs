@@ -7,8 +7,9 @@ using System.Windows.Markup;
 using System.Windows.Media;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
+using runner.Auxiliar;
 
-namespace runner
+namespace runner.Controls
 {
     [ContentProperty("Buttons")]
     public class BindableApplicationBar : ItemsControl, IApplicationBar

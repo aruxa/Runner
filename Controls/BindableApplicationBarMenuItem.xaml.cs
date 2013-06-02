@@ -3,7 +3,7 @@ using System.Windows;
 using System.Windows.Input;
 using Microsoft.Phone.Shell;
 
-namespace runner
+namespace runner.Controls
 {
     public class BindableApplicationBarMenuItem : FrameworkElement, IApplicationBarMenuItem
     {

@@ -6,7 +6,7 @@ using System.Windows;
 using System.Windows.Input;
 using Microsoft.Phone.Controls.Maps;
 using Microsoft.Phone.Controls.Maps.Platform;
-using PhoneApp1;
+using runner.Auxiliar;
 using runner.Bing.Route;
 
 namespace runner

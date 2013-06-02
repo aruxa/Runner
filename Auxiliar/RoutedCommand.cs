@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Windows.Input;
 
-
-namespace PhoneApp1
+namespace runner.Auxiliar
 {
 
     public class Command : ICommand
