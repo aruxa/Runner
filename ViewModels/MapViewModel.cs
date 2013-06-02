@@ -256,7 +256,7 @@ namespace runner
 
             Center = YouAreHere;
             Zoom = DefaultZoomLevel;
-            pushpins = new ObservableCollection<Pushpin>(new List<Pushpin>());
+            Pushpins = new ObservableCollection<Pushpin>(new List<Pushpin>());
             IsRecording = false;
         }
 
@@ -273,7 +273,8 @@ namespace runner
         void UpdateMapElements(GeoCoordinate currentLoc)
         {
             Center = currentLoc;
-            Pushpins = new ObservableCollection<Pushpin>(new List<Pushpin> { new Pushpin { Location = currentLoc } });
+            Pushpins.Clear();
+            Pushpins.Add(new Pushpin { Location = currentLoc });
             Speed = (currentLoc.Speed * 3.6).ToString();
             Altitude = currentLoc.Altitude.ToString();
 
@@ -282,21 +283,21 @@ namespace runner
                 return;
             }
 
-
-            Routes.Clear();
             RouteLocations.Add(currentLoc);
 
             if (RouteLocations.Count - 2 >= 0)
             {
                 Distance = Distance + RouteLocations[RouteLocations.Count - 2].GetDistanceTo(currentLoc);
             }
-            var routeModel = new RouteModel(RouteLocations);
-            Routes.Add(routeModel);
-            Route = routeModel;
+            if (Routes.Count == 0)
+            {
+                var routeModel = new RouteModel(RouteLocations);
+                Routes.Add(routeModel);
+                Route = routeModel;
+            }
 
             NotifyPropertyChanged("Routes");
         }
-
 
         void StartWatcher(object o)
         {
@@ -317,7 +318,6 @@ namespace runner
             {
                 IsRecording = false;
             }
-            SettingsHelper.Instance.MovementThreshhold = Watcher.MovementThreshold;
         }
     }
 }
