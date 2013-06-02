@@ -249,7 +249,7 @@ namespace runner
                 Routes.Add(routeModel);
                 Route = routeModel;
             }
-
+            NotifyPropertyChanged("Route");
             NotifyPropertyChanged("Routes");
         }
 
@@ -264,7 +264,7 @@ namespace runner
             Distance = 0;
             Route = new RouteModel(new ObservableCollection<GeoCoordinate>());
             IsRecording = true;
-            
+
             Watcher.ChangePosition(DateTime.Now, new GeoCoordinate(44.448074, 26.081837));
             Watcher.ChangePosition(DateTime.Now, new GeoCoordinate(44.447959, 26.082315));
             Watcher.ChangePosition(DateTime.Now, new GeoCoordinate(44.447924, 26.082518));
