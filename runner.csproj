@@ -76,7 +76,6 @@
     <Compile Include="Controls\Settings.xaml.cs">
       <DependentUpon>Settings.xaml</DependentUpon>
     </Compile>
-    <Compile Include="FakeGeoCoordinateWatcher.cs" />
     <Compile Include="Geo\Mock\FakeGeoCoordinateWatcher.cs" />
     <Compile Include="Geo\RouteCalculationError.cs" />
     <Compile Include="Geo\RouteCalculator.cs" />
@@ -91,11 +90,7 @@
     <Compile Include="ViewModels\MapViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PushpinModel.cs" />
-    <Compile Include="RouteCalculationError.cs" />
-    <Compile Include="RouteCalculator.cs" />
     <Compile Include="Auxiliar\RoutedCommand.cs" />
-    <Compile Include="RouteModel.cs" />
-    <Compile Include="RoutingState.cs" />
     <Compile Include="Service References\Bing.Geocode\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
