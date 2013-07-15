@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Linq.Expressions;
 
 namespace runner
 {
@@ -27,6 +28,33 @@ namespace runner
 
             PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
         }
+
+        protected virtual void NotifyPropertyChanged(Expression<Func<object>>  property)
+        {
+            if (property == null)
+            {
+                throw new ArgumentNullException("propertyName");
+            }
+            if (PropertyChanged == null)
+            {
+                return;
+            }
+
+            if (!(property.Body is UnaryExpression))
+            {
+                return;
+            }
+
+            var unaryExpression = property.Body as UnaryExpression;
+
+            if (unaryExpression == null)
+            {
+                return;
+            }
+
+            NotifyPropertyChanged(((MemberExpression)unaryExpression.Operand).Member.Name);
+        }
+
 
         #endregion
     }
