@@ -5,19 +5,28 @@ using System.Device.Location;
 using System.Windows;
 using System.Windows.Input;
 using Microsoft.Phone.Controls.Maps;
-using Microsoft.Phone.Controls.Maps.Platform;
 using runner.Auxiliar;
 using runner.Bing.Route;
 using runner.Geo;
-using runner.Geo.Mock;
 
 namespace runner
 {
     public class MapViewModel : ViewModelBase
     {
+        #region Consts
+
+        private static readonly GeoCoordinate defaultLocation = new GeoCoordinate(44.44779, 26.081745);
+
+        private const double DefaultZoomLevel = 18.0;
+
+        private const double MaxZoomLevel = 21.0;
+
+        private const double MinZoomLevel = 1.0;
+
+        #endregion Consts
+
         private GeoCoordinate _center;
         private CredentialsProvider _credentialsProvider = new ApplicationIdCredentialsProvider(App.Id);
-        private static readonly GeoCoordinate defaultLocation = new GeoCoordinate(44.44779, 26.081745);
         private ObservableCollection<Pushpin> pushpins;
         private string _speed;
         private double _zoom;
@@ -25,9 +34,6 @@ namespace runner
         private ObservableCollection<ItineraryItem> _itineraries;
         private ObservableCollection<GeoCoordinate> _locations;
         private RouteModel _route;
-        private const double DefaultZoomLevel = 18.0;
-        private const double MaxZoomLevel = 21.0;
-        private const double MinZoomLevel = 1.0;
         private bool _isRecording;
         private string _altitude;
         private double _distance;
@@ -52,7 +58,6 @@ namespace runner
                 NotifyPropertyChanged("IsRecording");
             }
         }
-
 
         public double Zoom
         {
@@ -96,16 +101,6 @@ namespace runner
             }
         }
 
-        /// <summary>
-        /// Gets or sets the route destination location.
-        /// </summary>
-        public string To { get; set; }
-
-        /// <summary>
-        /// Gets or sets the route origin location.
-        /// </summary>
-        public string From { get; set; }
-
         public ObservableCollection<RouteModel> Routes { get { return _routes; } }
 
         public RouteModel Route
@@ -132,7 +127,7 @@ namespace runner
 
         public ICommand EndTrackingCommand { get; private set; }
 
-        public FakeGeoCoordinateWatcher Watcher { get; private set; }
+        public IGeoCoordinateWatcher Watcher { get; private set; }
 
         public GeoCoordinate YouAreHere
         {
@@ -184,13 +179,12 @@ namespace runner
 
         public MapViewModel()
         {
-            Watcher = new FakeGeoCoordinateWatcher(GeoPositionAccuracy.High);
+            Watcher = new GeoCoordinateWatcherAdapter(GeoPositionAccuracy.High);
 
             if (Watcher.Permission == GeoPositionPermission.Granted)
             {
                 Watcher.MovementThreshold = SettingsHelper.Instance.MovementThreshhold;
             }
-            //Watcher.Position.Location.HorizontalAccuracy = 1;
             Watcher.PositionChanged += WatcherOnPositionChanged;
             Watcher.Start();
 
@@ -265,12 +259,12 @@ namespace runner
             Route = new RouteModel(new ObservableCollection<GeoCoordinate>());
             IsRecording = true;
 
-            Watcher.ChangePosition(DateTime.Now, new GeoCoordinate(44.448074, 26.081837));
-            Watcher.ChangePosition(DateTime.Now, new GeoCoordinate(44.447959, 26.082315));
-            Watcher.ChangePosition(DateTime.Now, new GeoCoordinate(44.447924, 26.082518));
-            Watcher.ChangePosition(DateTime.Now, new GeoCoordinate(44.448231, 26.082679));
-            Watcher.ChangePosition(DateTime.Now, new GeoCoordinate(44.450681, 26.084096));
-            Watcher.ChangePosition(DateTime.Now, new GeoCoordinate(44.451187, 26.084364));
+            //Watcher.ChangePosition(DateTime.Now, new GeoCoordinate(44.448074, 26.081837));
+            //Watcher.ChangePosition(DateTime.Now, new GeoCoordinate(44.447959, 26.082315));
+            //Watcher.ChangePosition(DateTime.Now, new GeoCoordinate(44.447924, 26.082518));
+            //Watcher.ChangePosition(DateTime.Now, new GeoCoordinate(44.448231, 26.082679));
+            //Watcher.ChangePosition(DateTime.Now, new GeoCoordinate(44.450681, 26.084096));
+            //Watcher.ChangePosition(DateTime.Now, new GeoCoordinate(44.451187, 26.084364));
   
         }
 

@@ -79,10 +79,7 @@
     <Compile Include="Geo\GeoCoordinateWatcherAdapter.cs" />
     <Compile Include="Geo\IGeoCoordinateWatcher.cs" />
     <Compile Include="Geo\Mock\FakeGeoCoordinateWatcher.cs" />
-    <Compile Include="Geo\RouteCalculationError.cs" />
-    <Compile Include="Geo\RouteCalculator.cs" />
     <Compile Include="Geo\RouteModel.cs" />
-    <Compile Include="Geo\RoutingState.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
