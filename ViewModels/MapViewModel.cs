@@ -45,7 +45,7 @@ namespace runner
             set
             {
                 _distance = value;
-                NotifyPropertyChanged("Distance");
+                NotifyPropertyChanged(() => Distance);
             }
         }
 
@@ -55,7 +55,7 @@ namespace runner
             set
             {
                 _isRecording = value;
-                NotifyPropertyChanged("IsRecording");
+                NotifyPropertyChanged(() => IsRecording);
             }
         }
 
@@ -68,7 +68,7 @@ namespace runner
                 if (_zoom != coercedZoom)
                 {
                     _zoom = value;
-                    NotifyPropertyChanged("Zoom");
+                    NotifyPropertyChanged(() => Zoom);
                 }
             }
         }
@@ -81,7 +81,7 @@ namespace runner
                 if (_center != value)
                 {
                     _center = value;
-                    NotifyPropertyChanged("Center");
+                    NotifyPropertyChanged(() => Center);
                 }
             }
         }
@@ -97,7 +97,7 @@ namespace runner
             set
             {
                 pushpins = value;
-                NotifyPropertyChanged("Pushpins");
+                NotifyPropertyChanged(() => Pushpins);
             }
         }
 
@@ -112,7 +112,7 @@ namespace runner
             set
             {
                 _route = value;
-                NotifyPropertyChanged("Route");
+                NotifyPropertyChanged(() => Route);
             }
         }
 
@@ -147,7 +147,7 @@ namespace runner
             set
             {
                 _speed = value;
-                NotifyPropertyChanged("Speed");
+                NotifyPropertyChanged(() => Speed);
             }
         }
 
@@ -173,7 +173,7 @@ namespace runner
             set
             {
                 _altitude = value;
-                NotifyPropertyChanged("Altitude");
+                NotifyPropertyChanged(() => Altitude);
             }
         }
 
@@ -243,8 +243,8 @@ namespace runner
                 Routes.Add(routeModel);
                 Route = routeModel;
             }
-            NotifyPropertyChanged("Route");
-            NotifyPropertyChanged("Routes");
+            NotifyPropertyChanged(()=>Route);
+            NotifyPropertyChanged(()=>Routes);
         }
 
         void StartWatcher(object o)
