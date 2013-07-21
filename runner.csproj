@@ -66,11 +66,13 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Auxiliar\BoolToOppositeVisibilityConverter.cs" />
+    <Compile Include="Auxiliar\BoolToVisibilityConverter.cs" />
     <Compile Include="Auxiliar\DoubleToStringConverter.cs" />
     <Compile Include="Controls\BindableApplicationBar.xaml.cs" />
     <Compile Include="Controls\BindableApplicationBarIconButton.xaml.cs" />
     <Compile Include="Controls\BindableApplicationBarMenuItem.xaml.cs" />
-    <Compile Include="Auxiliar\BoolToVisibilityConverter.cs" />
+    <Compile Include="Auxiliar\BoolToOpositeConverter.cs" />
     <Compile Include="Auxiliar\Cache.cs" />
     <Compile Include="Controls\MapRouteControl.cs" />
     <Compile Include="Controls\Settings.xaml.cs">

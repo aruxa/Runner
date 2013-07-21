@@ -5,7 +5,7 @@ namespace runner
 {
     public class SettingsHelper
     {
-        double defaultMovementThreshold = 1;
+        private const double defaultMovementThreshold = 1;
 
         public double MovementThreshhold
         {
@@ -19,9 +19,21 @@ namespace runner
             }
         }
 
+        public bool IsMock
+        {
+            get { return GetValueOrDefault("IsMock", false); }
+            set
+            {
+                if (AddOrUpdateValue("IsMock", value))
+                {
+                    Save();
+                }
+            }
+        }
+
         public double HorizontalAccuracy { get; set; }
 
-        private static SettingsHelper _instance = new SettingsHelper();
+        private static readonly SettingsHelper _instance = new SettingsHelper();
 
         public static SettingsHelper Instance
         {

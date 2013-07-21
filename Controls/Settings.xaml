@@ -8,38 +8,41 @@
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
     xmlns:runner="clr-namespace:runner"
-     xmlns:controls ="clr-namespace:runner.Controls"
     xmlns:auxiliar="clr-namespace:runner.Auxiliar"
     d:DesignHeight="480" d:DesignWidth="480">
 
-    <UserControl.Resources>
-        <auxiliar:DoubleToStringConverter x:Key="DoubleToStringConverter"/>
-    </UserControl.Resources>
-    <UserControl.DataContext>
-        <runner:SettingsViewModel/>
-    </UserControl.DataContext>
-    <Grid x:Name="LayoutRoot" ShowGridLines="false">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-        </Grid.RowDefinitions>
+  <UserControl.Resources>
+    <auxiliar:DoubleToStringConverter x:Key="DoubleToStringConverter"/>
+  </UserControl.Resources>
+  <UserControl.DataContext>
+    <runner:SettingsViewModel/>
+  </UserControl.DataContext>
+  <Grid x:Name="LayoutRoot" ShowGridLines="false">
+    <Grid.RowDefinitions>
+      <RowDefinition Height="Auto"/>
+      <RowDefinition Height="Auto"/>
+      <RowDefinition Height="Auto"/>
+      <RowDefinition Height="336*" />
+    </Grid.RowDefinitions>
 
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto" />
-            <ColumnDefinition Width="Auto"/>
-        </Grid.ColumnDefinitions>
-        <TextBlock Text="Movement Threshold" TextWrapping="NoWrap" Margin="10,20,10,0" />
-        <TextBox InputScope="Number" Grid.Column="1" 
-                         Text="{Binding MovementThreshold, Mode=TwoWay, Converter={StaticResource DoubleToStringConverter}}" 
-                         BorderBrush="{StaticResource PhoneTextBoxEditBorderBrush}"
-                         Background="{StaticResource PhoneTextBoxEditBackgroundBrush}"
-                         Foreground="{StaticResource PhoneTextBoxForegroundBrush}"
-                         SelectionForeground="{StaticResource PhoneTextBoxSelectionForegroundBrush}" />
-        <TextBlock Grid.Row="1" Text="misc" TextWrapping="NoWrap" Margin="10,20,10,0"/>
-        <TextBox InputScope="Number" Grid.Column="1" Grid.Row="1" Text="{Binding MovementThreshold}"
-                         BorderBrush="{StaticResource PhoneTextBoxEditBorderBrush}"
-                         Background="{StaticResource PhoneTextBoxEditBackgroundBrush}"
-                         Foreground="{StaticResource PhoneTextBoxForegroundBrush}"
-                         SelectionForeground="{StaticResource PhoneTextBoxSelectionForegroundBrush}"/>
-    </Grid>
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition Width="Auto" />
+      <ColumnDefinition Width="Auto"/>
+      <ColumnDefinition Width="228*" />
+    </Grid.ColumnDefinitions>
+    <TextBlock Text="Movement Threshold" TextWrapping="NoWrap" Margin="10,20,10,0" />
+    <TextBox InputScope="Number" Grid.Column="1"
+                     Text="{Binding MovementThreshold, Mode=TwoWay, Converter={StaticResource DoubleToStringConverter}}"
+                     BorderBrush="{StaticResource PhoneTextBoxEditBorderBrush}"
+                     Background="{StaticResource PhoneTextBoxEditBackgroundBrush}"
+                     Foreground="{StaticResource PhoneTextBoxForegroundBrush}"
+                     SelectionForeground="{StaticResource PhoneTextBoxSelectionForegroundBrush}" />
+    <TextBlock Grid.Row="1" Text="misc" TextWrapping="NoWrap" Margin="10,20,10,0"/>
+    <TextBox InputScope="Number" Grid.Column="1" Grid.Row="1" Text="{Binding MovementThreshold}"
+                     BorderBrush="{StaticResource PhoneTextBoxEditBorderBrush}"
+                     Background="{StaticResource PhoneTextBoxEditBackgroundBrush}"
+                     Foreground="{StaticResource PhoneTextBoxForegroundBrush}"
+                     SelectionForeground="{StaticResource PhoneTextBoxSelectionForegroundBrush}" Grid.ColumnSpan="2" Margin="1,3,227,333" Grid.RowSpan="3" />
+    <ToggleButton Grid.Column="0" IsChecked="{Binding IsMock, Mode=TwoWay}" Grid.Row="2" Content="Mock" />
+  </Grid>
 </UserControl>

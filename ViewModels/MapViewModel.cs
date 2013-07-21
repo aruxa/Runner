@@ -8,6 +8,7 @@ using Microsoft.Phone.Controls.Maps;
 using runner.Auxiliar;
 using runner.Bing.Route;
 using runner.Geo;
+using runner.Geo.Mock;
 
 namespace runner
 {
@@ -179,7 +180,14 @@ namespace runner
 
         public MapViewModel()
         {
-            Watcher = new GeoCoordinateWatcherAdapter(GeoPositionAccuracy.High);
+            if (SettingsHelper.Instance.IsMock)
+            {
+                Watcher = new GeoCoordinateWatcherAdapter(GeoPositionAccuracy.High);
+            }
+            else
+            {
+                Watcher = new FakeGeoCoordinateWatcher(GeoPositionAccuracy.High);
+            }
 
             if (Watcher.Permission == GeoPositionPermission.Granted)
             {
@@ -213,7 +221,7 @@ namespace runner
             if (eventArgs.Position == null || eventArgs.Position.Location == null || eventArgs.Position.Location.IsUnknown)
             {
                 return;
-              }
+            }
             var currentLoc = eventArgs.Position.Location;
             Deployment.Current.Dispatcher.BeginInvoke(() => UpdateMapElements(currentLoc));
         }
@@ -265,7 +273,7 @@ namespace runner
             //Watcher.ChangePosition(DateTime.Now, new GeoCoordinate(44.448231, 26.082679));
             //Watcher.ChangePosition(DateTime.Now, new GeoCoordinate(44.450681, 26.084096));
             //Watcher.ChangePosition(DateTime.Now, new GeoCoordinate(44.451187, 26.084364));
-  
+
         }
 
         private void StopWatcher(object obj)

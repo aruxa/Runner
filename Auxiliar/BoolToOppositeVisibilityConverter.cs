@@ -1,11 +1,19 @@
 ﻿using System;
 using System.Globalization;
+using System.Net;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Ink;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Animation;
+using System.Windows.Shapes;
 
 namespace runner.Auxiliar
 {
-    public class BoolToVisibilityConverter : IValueConverter
+    public class BoolToOppositeVisibilityConverter : IValueConverter
     {
         #region Implementation of IValueConverter
 
@@ -16,12 +24,12 @@ namespace runner.Auxiliar
                 return null;
             }
 
-            if ((value is bool)== false)
+            if ((value is bool) == false)
             {
                 return null;
             }
             var val = (bool)value;
-            return val ? Visibility.Visible : Visibility.Collapsed;
+            return val ? Visibility.Collapsed : Visibility.Visible;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
