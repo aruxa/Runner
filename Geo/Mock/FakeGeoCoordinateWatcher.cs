@@ -10,28 +10,22 @@ namespace runner.Geo.Mock
 
         }
 
-        //public  void Start()
-        //{
-        //    OnPositionStatusChanged(new GeoPositionStatusChangedEventArgs(GeoPositionStatus.Ready));
-
-        //    OnPositionChanged(new GeoPositionChangedEventArgs<GeoCoordinate>(new GeoPosition<GeoCoordinate>(DateTime.Now, new GeoCoordinate(44.448074, 26.081837))));
-        //    OnPositionChanged(new GeoPositionChangedEventArgs<GeoCoordinate>(new GeoPosition<GeoCoordinate>(DateTime.Now, new GeoCoordinate(44.447959, 26.082315))));
-        //    OnPositionChanged(new GeoPositionChangedEventArgs<GeoCoordinate>(new GeoPosition<GeoCoordinate>(DateTime.Now, new GeoCoordinate(44.447924, 26.082518))));
-        //    OnPositionChanged(new GeoPositionChangedEventArgs<GeoCoordinate>(new GeoPosition<GeoCoordinate>(DateTime.Now, new GeoCoordinate(44.448231, 26.082679))));
-        //    OnPositionChanged(new GeoPositionChangedEventArgs<GeoCoordinate>(new GeoPosition<GeoCoordinate>(DateTime.Now, new GeoCoordinate(44.450681, 26.084096))));   
-        //    OnPositionChanged(new GeoPositionChangedEventArgs<GeoCoordinate>(new GeoPosition<GeoCoordinate>(DateTime.Now, new GeoCoordinate(44.451187, 26.084364))));
-        //}
+        public void Start(bool cevaParametru)
+        {
+            Status = GeoPositionStatus.Ready;
+            ChangePosition(DateTime.Now, new GeoCoordinate(44.448074, 26.081837));
+            ChangePosition(DateTime.Now, new GeoCoordinate(44.447959, 26.082315));
+            ChangePosition(DateTime.Now, new GeoCoordinate(44.447924, 26.082518));
+            ChangePosition(DateTime.Now, new GeoCoordinate(44.448231, 26.082679));
+            ChangePosition(DateTime.Now, new GeoCoordinate(44.450681, 26.084096));
+            ChangePosition(DateTime.Now, new GeoCoordinate(44.451187, 26.084364));
+        }
 
         #region Implementation of IGeoPositionWatcher<GeoCoordinate>
 
         public void Start()
         {
             Start(false);
-        }
-
-        public void Start(bool suppressPermissionPrompt)
-        {
-            Status = GeoPositionStatus.Ready;
         }
 
         public bool TryStart(bool suppressPermissionPrompt, TimeSpan timeout)

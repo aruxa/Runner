@@ -182,11 +182,11 @@ namespace runner
         {
             if (SettingsHelper.Instance.IsMock)
             {
-                Watcher = new GeoCoordinateWatcherAdapter(GeoPositionAccuracy.High);
+                Watcher = new FakeGeoCoordinateWatcher(GeoPositionAccuracy.High);
             }
             else
             {
-                Watcher = new FakeGeoCoordinateWatcher(GeoPositionAccuracy.High);
+                Watcher = new GeoCoordinateWatcherAdapter(GeoPositionAccuracy.High);
             }
 
             if (Watcher.Permission == GeoPositionPermission.Granted)
@@ -266,14 +266,6 @@ namespace runner
             Distance = 0;
             Route = new RouteModel(new ObservableCollection<GeoCoordinate>());
             IsRecording = true;
-
-            //Watcher.ChangePosition(DateTime.Now, new GeoCoordinate(44.448074, 26.081837));
-            //Watcher.ChangePosition(DateTime.Now, new GeoCoordinate(44.447959, 26.082315));
-            //Watcher.ChangePosition(DateTime.Now, new GeoCoordinate(44.447924, 26.082518));
-            //Watcher.ChangePosition(DateTime.Now, new GeoCoordinate(44.448231, 26.082679));
-            //Watcher.ChangePosition(DateTime.Now, new GeoCoordinate(44.450681, 26.084096));
-            //Watcher.ChangePosition(DateTime.Now, new GeoCoordinate(44.451187, 26.084364));
-
         }
 
         private void StopWatcher(object obj)
