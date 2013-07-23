@@ -33,7 +33,7 @@ namespace runner
         {
             if (property == null)
             {
-                throw new ArgumentNullException("propertyName");
+                throw new ArgumentNullException("property");
             }
             if (PropertyChanged == null)
             {
