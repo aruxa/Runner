@@ -191,7 +191,8 @@ namespace runner
 
             if (Watcher.Permission == GeoPositionPermission.Granted)
             {
-                Watcher.MovementThreshold = SettingsHelper.Instance.MovementThreshhold;
+
+                Watcher.MovementThreshold = double.IsNaN(SettingsHelper.Instance.MovementThreshhold) || (SettingsHelper.Instance.MovementThreshhold == 0) ? 1 : SettingsHelper.Instance.MovementThreshhold;
             }
             Watcher.PositionChanged += WatcherOnPositionChanged;
             Watcher.Start();

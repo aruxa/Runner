@@ -8,6 +8,7 @@
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
     xmlns:runner="clr-namespace:runner"
+<<<<<<< HEAD
     xmlns:auxiliar="clr-namespace:runner.Auxiliar"
     d:DesignHeight="480" d:DesignWidth="480">
 
@@ -45,4 +46,20 @@
                      SelectionForeground="{StaticResource PhoneTextBoxSelectionForegroundBrush}" Grid.ColumnSpan="2" Margin="1,3,227,333" Grid.RowSpan="3" />
     <ToggleButton Grid.Column="0" IsChecked="{Binding IsMock, Mode=TwoWay}" Grid.Row="2" Content="Mock" />
   </Grid>
+=======
+    d:DesignHeight="480" d:DesignWidth="480">
+    
+    <UserControl.DataContext>
+        <runner:SettingsViewModel/>
+    </UserControl.DataContext>
+    <Grid x:Name="LayoutRoot">
+        <StackPanel Orientation="Horizontal" Margin="0,0,0,17">
+            <TextBlock Text="LineOne" TextWrapping="NoWrap" Margin="12,0,0,0" />
+            <TextBox Text="{Binding Settings, Path=MovementThreshold}"/>
+        </StackPanel>
+        <StackPanel>
+            <TextBlock Text="LineThree" TextWrapping="NoWrap" Margin="12,-6,0,0"/>
+        </StackPanel>
+    </Grid>
+>>>>>>> parent of dfb5315... misc
 </UserControl>
